@@ -20,32 +20,6 @@ class AuthController extends BaseController
         return view('register');
     }
 
-    // public function processLogin()
-    // {
-    //     // Proses login pengguna
-    //     // Ambil data pengguna dari form login dan lakukan verifikasi
-
-    //     // Contoh validasi sederhana (harap sesuaikan dengan kebutuhan Anda)
-    //     $username = $this->request->getVar('username');
-    //     $password = $this->request->getVar('password');
-
-    //     // Cek apakah username dan password sesuai
-    //     $userModel = new UserModel();
-    //     $user = $userModel->where('username', $username)->first();
-
-    //     if ($user && password_verify($password, $user['password'])) {
-    //         // Berhasil login
-    //         // Simpan data login ke sesi atau lakukan tindakan lain yang diinginkan
-
-    //         return redirect()->to('users/index'); // Ganti '/dashboard' dengan halaman setelah login yang diinginkan
-    //     } else {
-    //         // Gagal login
-    //         // Redirect kembali ke halaman login dengan pesan error
-
-    //         return redirect()->back()->with('error', 'Username atau password salah');
-    //     }
-    // }
-
     public function processLogin()
     {
         $username = $this->request->getVar('username');
@@ -56,8 +30,9 @@ class AuthController extends BaseController
 
         if ($user) {
             if (password_verify($password, $user['password'])) {
-                $session = Services::session();
+                $session = session();
                 $session->set('id_level', $user['id_level']);
+                $session->set('username', $user['username']);
 
                 if ($user['id_level'] == 1) {
                     return redirect()->to('/admin');
