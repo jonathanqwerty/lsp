@@ -7,17 +7,10 @@ use App\Models\UserModel;
 
 class UserController extends BaseController
 {
-    protected $user;
-
-    public function __construct()
-    {
-        $this->user = new UserModel();
-    }
 
     public function index()
     {
-        $data =  $this->user->findAll();
-        return view('users/pengguna', $data);
+        return view('users/pelanggan');
     }
     public function dashboard()
     {
@@ -26,9 +19,9 @@ class UserController extends BaseController
             // Jika sudah login, alihkan ke halaman tujuan
             $idLevel = session()->get('id_level');
             if ($idLevel == 1) {
-                return redirect()->to('/admin/dashboard');
+                return redirect()->to('/admin/admin');
             } else {
-                return redirect()->to('/users/dashboard');
+                return redirect()->to('/users/pelanggan');
             }
         }
 

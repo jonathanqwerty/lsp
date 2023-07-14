@@ -7,6 +7,7 @@ use App\Models\PembayaranModel;
 use App\Models\UserModel;
 
 use App\Controllers\BaseController;
+use App\Models\TarifModel;
 
 class AdminController extends BaseController
 {
@@ -16,6 +17,22 @@ class AdminController extends BaseController
         return view('admin/admin');
     }
 
+    public function filter()
+    {
+        $userModel = new UserModel();
+        $filteruser = $userModel->where('id_level', '2')->findAll();
+        $users['users'] = $filteruser;
+        return view('admin/list', $users);
+    }
+
+    public function tarif()
+    {
+        $tarifModel = new TarifModel();
+        $tarif['tarif'] = $tarifModel->findAll();
+
+        return view('admin/tarif', $tarif);
+    }
+
     public function tagihan()
     {
         // Mengambil data tagihan dari database
@@ -23,7 +40,7 @@ class AdminController extends BaseController
         $tagihan = $tagihanModel->findAll();
 
         // Menampilkan data tagihan
-        return view('tagihan', ['tagihan' => $tagihan]);
+        return view('admin/tagihan', ['tagihan' => $tagihan]);
     }
 
     public function pembayaran()
@@ -33,7 +50,7 @@ class AdminController extends BaseController
         $pembayaran = $pembayaranModel->findAll();
 
         // Menampilkan data pembayaran
-        return view('pembayaran', ['pembayaran' => $pembayaran]);
+        return view('admin/pembayaran', ['pembayaran' => $pembayaran]);
     }
 
     public function konfirmasiPembayaran($id_pembayaran)

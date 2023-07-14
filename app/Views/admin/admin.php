@@ -23,19 +23,25 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($tagihan as $row) : ?>
+            <?php if (!empty($tagihan)) : ?>
+                <?php foreach ($tagihan as $row) : ?>
+                    <tr>
+                        <td><?= $row['id_tagihan'] ?></td>
+                        <td><?= $row['id_pelanggan'] ?></td>
+                        <td><?= $row['bulan'] ?></td>
+                        <td><?= $row['tahun'] ?></td>
+                        <td><?= $row['jumlah_meter'] ?></td>
+                        <td><?= $row['status'] ?></td>
+                        <td>
+                            <a href="/admin/konfirmasi/<?= $row['id_tagihan'] ?>">Konfirmasi Pembayaran</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else : ?>
                 <tr>
-                    <td><?= $row['id_tagihan'] ?></td>
-                    <td><?= $row['id_pelanggan'] ?></td>
-                    <td><?= $row['bulan'] ?></td>
-                    <td><?= $row['tahun'] ?></td>
-                    <td><?= $row['jumlah_meter'] ?></td>
-                    <td><?= $row['status'] ?></td>
-                    <td>
-                        <a href="/admin/konfirmasi/<?= $row['id_tagihan'] ?>">Konfirmasi Pembayaran</a>
-                    </td>
+                    <td colspan="7">No data available</td>
                 </tr>
-            <?php endforeach; ?>
+            <?php endif; ?>
         </tbody>
 
     </table>
@@ -55,18 +61,24 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($pembayaran as $row) : ?>
+            <?php if (!empty($pembayaran)) : ?>
+                <?php foreach ($pembayaran as $row) : ?>
+                    <tr>
+                        <td><?= $row['id_pembayaran'] ?></td>
+                        <td><?= $row['id_tagihan'] ?></td>
+                        <td><?= $row['id_pelanggan'] ?></td>
+                        <td><?= $row['tanggal_pembayaran'] ?></td>
+                        <td><?= $row['bulan_bayar'] ?></td>
+                        <td><?= $row['biaya_admin'] ?></td>
+                        <td><?= $row['total_bayar'] ?></td>
+                        <td><?= $row['id_user'] ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else : ?>
                 <tr>
-                    <td><?= $row['id_pembayaran'] ?></td>
-                    <td><?= $row['id_tagihan'] ?></td>
-                    <td><?= $row['id_pelanggan'] ?></td>
-                    <td><?= $row['tanggal_pembayaran'] ?></td>
-                    <td><?= $row['bulan_bayar'] ?></td>
-                    <td><?= $row['biaya_admin'] ?></td>
-                    <td><?= $row['total_bayar'] ?></td>
-                    <td><?= $row['id_user'] ?></td>
+                    <td colspan="8">No data available</td>
                 </tr>
-            <?php endforeach; ?>
+            <?php endif; ?>
         </tbody>
 
     </table>

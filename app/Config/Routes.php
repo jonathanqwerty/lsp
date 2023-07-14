@@ -35,19 +35,18 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-// // $routes->get('/', 'Home::index');
 
-// $routes->add('login', 'AuthController::login');
-// $routes->add('register', 'AuthController::register');
-// $routes->post('process-login', 'AuthController::processLogin');
-// $routes->post('process-register', 'AuthController::processRegister');
-
-$routes->get('/', 'HomeController::index');
+$routes->get('/', 'AuthController::login');
 
 // Admin routes
 $routes->group('admin', ['filter' => 'admin'], function ($routes) {
-    $routes->get('/', 'AdminController::index');
-    // Add more admin routes as needed
+    $routes->get('/', 'AdminController::index'); // Mengarahkan ke method dashboard
+    $routes->get('list', 'AdminController::filter'); // Menampilkan user
+    $routes->get('tarif', 'AdminController::tarif');
+    $routes->get('tagihan', 'AdminController::tagihan'); // Menambahkan route untuk tagihan
+    $routes->get('pembayaran', 'AdminController::pembayaran'); // Menambahkan route untuk pembayaran
+    $routes->get('konfirmasi/(:num)', 'AdminController::konfirmasiPembayaran/$1'); // Menambahkan route untuk konfirmasi pembayaran
+
 });
 
 // User routes

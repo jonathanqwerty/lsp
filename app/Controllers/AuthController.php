@@ -62,7 +62,7 @@ class AuthController extends BaseController
                 if ($user['id_level'] == 1) {
                     return redirect()->to('/admin');
                 } else if ($user['id_level'] == 2) {
-                    return redirect()->to('users/pengguna');
+                    return redirect()->to('/pengguna');
                 }
             }
         }
