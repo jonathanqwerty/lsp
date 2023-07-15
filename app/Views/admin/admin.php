@@ -7,6 +7,14 @@
 </head>
 
 <body>
+    <nav>
+        <div class="navContainer">
+            <a href="<?= base_url('admin/pelanggan/list-pelanggan'); ?>">Pelanggan</a>
+            <a href="<?= base_url('admin/tarif/list-tarif'); ?>">Tarif Listrik</a>
+            <a href="<?= base_url('/logout'); ?>">Keluar</a>
+        </div>
+    </nav>
+
     <h2>Welcome, <?= session()->get('username') ?></h2>
 
     <h3>Tagihan</h3>
@@ -80,8 +88,8 @@
                 </tr>
             <?php endif; ?>
         </tbody>
-
     </table>
+
 </body>
 
 </html>

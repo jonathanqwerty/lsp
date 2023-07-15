@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Admin;
 
 use App\Models\TagihanModel;
 use App\Models\PembayaranModel;
@@ -15,14 +15,6 @@ class AdminController extends BaseController
     {
         // Halaman admin
         return view('admin/admin');
-    }
-
-    public function filter()
-    {
-        $userModel = new UserModel();
-        $filteruser = $userModel->where('id_level', '2')->findAll();
-        $users['users'] = $filteruser;
-        return view('admin/list', $users);
     }
 
     public function tarif()

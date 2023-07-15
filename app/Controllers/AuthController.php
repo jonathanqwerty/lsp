@@ -67,4 +67,12 @@ class AuthController extends BaseController
         // Redirect ke halaman login dengan pesan sukses
         return redirect()->to('/login')->with('success', 'Registrasi berhasil, silakan login');
     }
+
+    public function logout()
+    {
+        // Hapus data sesi pengguna
+        session()->destroy();
+        // Redirect ke halaman login atau halaman lain sesuai kebutuhan
+        return redirect()->to('/login')->with('success', 'Logout berhasil');
+    }
 }

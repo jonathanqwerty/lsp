@@ -40,18 +40,30 @@ $routes->get('/', 'AuthController::login');
 
 // Admin routes
 $routes->group('admin', ['filter' => 'admin'], function ($routes) {
-    $routes->get('/', 'AdminController::index'); // Mengarahkan ke method dashboard
-    $routes->get('list', 'AdminController::filter'); // Menampilkan user
-    $routes->get('tarif', 'AdminController::tarif');
-    $routes->get('tagihan', 'AdminController::tagihan'); // Menambahkan route untuk tagihan
-    $routes->get('pembayaran', 'AdminController::pembayaran'); // Menambahkan route untuk pembayaran
-    $routes->get('konfirmasi/(:num)', 'AdminController::konfirmasiPembayaran/$1'); // Menambahkan route untuk konfirmasi pembayaran
+    $routes->get('/', 'Admin\AdminController'); // Mengarahkan ke method dashboard
+    $routes->get('tagihan', 'Admin\AdminController::tagihan'); // Menambahkan route untuk tagihan
+    $routes->get('pembayaran', 'Admin\AdminController::pembayaran'); // Menambahkan route untuk pembayaran
+    $routes->get('konfirmasi/(:num)', 'Admin\AdminController::konfirmasiPembayaran/$1'); // Menambahkan route untuk konfirmasi pembayaran
+
+    // routes manajemen pelanggan admin
+    $routes->get('pelanggan/list-pelanggan', 'Admin\PelangganController::index');
+    $routes->get('pelanggan/delete/(:segment)', 'Admin\PelangganController::delete/$1');
+    $routes->get('pelanggan/edit-pelanggan/(:segment)', 'Admin\PelangganController::edit/$1');
+    $routes->post('pelanggan/update/(:segment)', 'Admin\PelangganController::update/$1');
+
+
+    //routes manajemen tarif
+    $routes->get('tarif/list-tarif', 'Admin\TarifController::index');
+    $routes->get('tarif/create-tarif', 'Admin\TarifController::create');
+    $routes->post('tarif/store', 'Admin\TarifController::store');
+    $routes->get('tarif/edit-tarif/(:segment)', 'Admin\TarifController::edit/$1');
+    $routes->post('tarif/update/(:segment)', 'Admin\TarifController::update/$1');
 
 });
 
 // User routes
 $routes->group('pengguna', ['filter' => 'user'], function ($routes) {
-    $routes->get('/', 'UserController::index');
+    $routes->get('/', 'User\UserController::index');
     // Add more user routes as needed
 });
 
